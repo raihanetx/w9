@@ -56,6 +56,7 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
             text-decoration: none !important;
             list-style: none;
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent !important;
         }
 
         button:focus,
@@ -1622,7 +1623,6 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
         }
         .review-modal .star-rating label:hover,
         .review-modal .star-rating label.hovered,
-        .review-modal .star-rating input:checked ~ label,
         .review-modal .star-rating label.selected {
             color: #ffc107;
         }
@@ -3909,6 +3909,21 @@ function toggleSeeMore(btn, seeLess) {
                                 currentLabel = currentLabel.previousElementSibling;
                             }
                         }
+                    });
+
+                    label.addEventListener('mouseover', () => {
+                        let currentLabel = label;
+                        while(currentLabel) {
+                            currentLabel.classList.add('hovered');
+                            currentLabel = currentLabel.previousElementSibling;
+                            if (currentLabel && currentLabel.tagName !== 'LABEL') {
+                                currentLabel = currentLabel.previousElementSibling;
+                            }
+                        }
+                    });
+
+                    label.addEventListener('mouseout', () => {
+                        labels.forEach(l => l.classList.remove('hovered'));
                     });
                 });
             }
