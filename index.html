@@ -56,7 +56,6 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
             text-decoration: none !important;
             list-style: none;
             scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent !important;
         }
 
         button:focus,
@@ -1608,7 +1607,7 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
             transition:border-color 0.3s;
         }
         .review-modal .form-group input:focus, .review-modal .form-group textarea:focus {
-            outline:none; border-color:#ced4da; box-shadow:none;
+            outline:none; border-color:var(--primary-color); box-shadow:none;
         }
         .review-modal .form-group textarea { height:100px; resize:vertical; }
 
@@ -1621,10 +1620,13 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
         .review-modal .star-rating label {
             font-size:28px; color:#ddd; cursor:pointer; transition:color 0.2s;
         }
+        .review-modal .star-rating input:checked ~ label,
         .review-modal .star-rating label:hover,
-        .review-modal .star-rating label.hovered,
-        .review-modal .star-rating label.selected {
+        .review-modal .star-rating label:hover ~ label {
             color: #ffc107;
+        }
+        .review-modal .star-rating input:checked + label ~ label {
+             color: #ddd;
         }
 
         .review-modal .modal-buttons { display:flex; gap:10px; margin-top:25px; }
@@ -3909,21 +3911,6 @@ function toggleSeeMore(btn, seeLess) {
                                 currentLabel = currentLabel.previousElementSibling;
                             }
                         }
-                    });
-
-                    label.addEventListener('mouseover', () => {
-                        let currentLabel = label;
-                        while(currentLabel) {
-                            currentLabel.classList.add('hovered');
-                            currentLabel = currentLabel.previousElementSibling;
-                            if (currentLabel && currentLabel.tagName !== 'LABEL') {
-                                currentLabel = currentLabel.previousElementSibling;
-                            }
-                        }
-                    });
-
-                    label.addEventListener('mouseout', () => {
-                        labels.forEach(l => l.classList.remove('hovered'));
                     });
                 });
             }
