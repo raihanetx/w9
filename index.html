@@ -1607,7 +1607,7 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
             transition:border-color 0.3s;
         }
         .review-modal .form-group input:focus, .review-modal .form-group textarea:focus {
-            outline:none; border-color:var(--primary-color); box-shadow:none;
+            outline:none; border-color:#ced4da; box-shadow:none;
         }
         .review-modal .form-group textarea { height:100px; resize:vertical; }
 
@@ -1620,13 +1620,11 @@ src="https://www.facebook.com/tr?id=482675157669768&ev=PageView&noscript=1"
         .review-modal .star-rating label {
             font-size:28px; color:#ddd; cursor:pointer; transition:color 0.2s;
         }
-        .review-modal .star-rating input:checked ~ label,
         .review-modal .star-rating label:hover,
-        .review-modal .star-rating label:hover ~ label {
+        .review-modal .star-rating label.hovered,
+        .review-modal .star-rating input:checked ~ label,
+        .review-modal .star-rating label.selected {
             color: #ffc107;
-        }
-        .review-modal .star-rating input:checked + label ~ label {
-             color: #ddd;
         }
 
         .review-modal .modal-buttons { display:flex; gap:10px; margin-top:25px; }
